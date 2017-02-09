@@ -20,10 +20,15 @@ void setup() {
 void draw() {
   background(0); // clear the background
 
+  // directions
+  String words = "use the arrows to move, 1-9 for ship speed";
+  fill(255);
+  text(words, 10, 30);
+
   // loop through all the stars
   for (int x=0; x< starNum; x++) {
     stars[x].update(); // update their position
-    stars[x].collisionCheck(myShip.getXPos(), myShip.getYPos()); // check if colliding with the ship
+    stars[x].collisionCheck(myShip.xPos, myShip.yPos); // check if colliding with the ship
     stars[x].render(); // draw the stars
   }
 
@@ -73,7 +78,7 @@ class Star {
   // star constructor
   Star() { // initial state
     speed = random(1, 10);
-    starSize = random(10, 50);
+    starSize = random(10, 100);
     xPos = random(0, width);
     yPos = random(100, width) * -1;
     collision = false;
@@ -115,8 +120,8 @@ class Star {
     } else { // if there is a colliison, supernova
       strokeWeight(5);
       stroke(255);
-      fill(220, 160, 0);
-      ellipse(xPos, yPos, starSize+20, starSize+20);
+      fill(220, 100, 0);
+      ellipse(xPos, yPos, starSize*1.5, starSize*1.5);
       collision = !collision; // reset the collison state for the next iteration
     }
   }
@@ -134,14 +139,6 @@ class Ship {
     xPos = width/2;
     yPos = height - 100;
     shieldSize = 0;
-  }
-
-  int getXPos() { // get the xpos
-    return xPos;
-  }
-
-  int getYPos() { // get the ypos
-    return yPos;
   }
 
   void update(int _xDelta, int _yDelta) {
