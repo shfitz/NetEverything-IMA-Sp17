@@ -1,6 +1,6 @@
 import processing.serial.*;   // import serial lib
 
-float sensorValue = 0;   // value from Arduino
+float[] sensorValues;   // array to store values from Arduino
 
 Serial myPort; // create instance of serial lib
 
@@ -21,9 +21,10 @@ void setup() {
 
 void draw() {
   // set the background color and size of the sphere:
-  background(sensorValue/4);
-  fill(255- sensorValue/4);
-  ellipse(width/2, height/2, sensorValue/2, sensorValue/2); 
+  background(sensorValues[0]*255);
+  fill(sensorValues[1]*255);
+  ellipse(width/2, height/2, sensorValues[2]/2+1, sensorValues[2]/2+1); 
+  // adding the +1 here to avoid divide by 0 nonsense when there's nothing coming in
 }
 
 void serialEvent(Serial myPort) {
@@ -34,7 +35,9 @@ void serialEvent(Serial myPort) {
   if (inString != null) { // if you have stuff in the string
     // trim off any whitespace:
     inString = trim(inString);
-    // convert to float and use in the sketch
-    sensorValue = float(inString); 
+
+    // split the string at the commas and convert the
+    // resulting substrings into your array:
+    sensorValues = float(split(inString, ","));
   }
 }
