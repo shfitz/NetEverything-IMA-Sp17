@@ -11,7 +11,7 @@ void setup() {
   // NB : you must have your Arduino connected when you first run this to figure out what 
   // port it is attached to!!
 
-  myPort = new Serial(this, Serial.list()[0], 9600); // instatiate the object
+  myPort = new Serial(this, Serial.list()[3], 9600); // instatiate the object
   // new serial object (named "myPort") that will run in this" sketch, which is physicallon on port X
   // and communicates at 9600 baud
 

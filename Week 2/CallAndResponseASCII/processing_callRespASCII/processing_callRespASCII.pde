@@ -11,7 +11,7 @@ void setup() {
   // NB : you must have your Arduino connected when you first run this to figure out what 
   // port it is attached to!!
 
-  myPort = new Serial(this, Serial.list()[0], 9600); // instatiate the object
+  myPort = new Serial(this, Serial.list()[3], 9600); // instatiate the object
   // new serial object (named "myPort") that will run in this" sketch, which is physicallon on port X
   // and communicates at 9600 baud
 
@@ -21,7 +21,7 @@ void setup() {
 
 void draw() {
   // set the background color and size of the sphere:
-  background(sensorValues[0]*255);
+  background(255-sensorValues[0]*255);
   fill(sensorValues[1]*255);
   ellipse(width/2, height/2, sensorValues[2]/2+1, sensorValues[2]/2+1); 
   // adding the +1 here to avoid divide by 0 nonsense when there's nothing coming in
