@@ -1,6 +1,6 @@
 import processing.serial.*;   // import serial lib
 
-float[] sensorValues;   // array to store values from Arduino
+float[] sensorValues = {0, 0, 0};   // array to store values from Arduino
 
 Serial myPort; // create instance of serial lib
 

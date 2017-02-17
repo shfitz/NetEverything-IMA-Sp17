@@ -1,4 +1,4 @@
-// send multiple bytes to processing with ASCII
+// send multiple sesnors to processing with ASCII
 
 const int potPin = A0;    // sensor to control size
 const int switch1Pin = 2;  // switch for bg color

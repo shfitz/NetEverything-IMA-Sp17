@@ -1,5 +1,5 @@
 // simple serial
-// send one byte from arduino to processing
+// send one sesnor from arduino to processing
 const int sensePin = A0;    // sensor to control red color
 
 void setup() {
