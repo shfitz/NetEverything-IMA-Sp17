@@ -11,10 +11,9 @@ var server = express();             // create a server using express
 function respondToClient(request, response) {
     console.log("there's an incoming request!!!!"); // make a note in the terminal
     // send the folllowing to the client:
-    response.writeHead(200, {
-        "Content-Type": "text/html"
-    });
+    response.writeHead(200, {"Content-Type": "text/html"});
     response.write("Hello friend");
+//    response.write("< " + new Date() + ">");
     response.end();
 }
 
