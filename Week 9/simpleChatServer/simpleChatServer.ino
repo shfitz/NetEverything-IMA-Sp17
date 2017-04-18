@@ -9,7 +9,7 @@
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network.
 byte mac[] = {
-  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+  0xDE, 0xAD, 0xBE, 0x12, 0xFE, 0xED
 };
 IPAddress ip(192, 168, 1, 177);
 
@@ -54,7 +54,7 @@ void loop() {
     if (Serial.available() > 0) {
       // read the bytes incoming from the client:
       char thisChar = Serial.read();
-      // send the bytes to the server :
+      // send the bytes to the client :
       server.write(thisChar);
       // echo the bytes to the serial monitor:
       Serial.write(thisChar);
