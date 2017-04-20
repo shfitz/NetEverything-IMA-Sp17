@@ -21,20 +21,6 @@ void setup()
 
   Serial.begin(9600);       // for debugging
 
-  // initialize SD card
-  Serial.println("Initializing SD card...");
-  if (!SD.begin(4)) {
-    Serial.println("ERROR - SD card initialization failed!");
-    return;    // init failed
-  }
-  Serial.println("SUCCESS - SD card initialized.");
-  // check for index.htm file
-  if (!SD.exists("index.htm")) {
-    Serial.println("ERROR - Can't find index.htm file!");
-    return;  // can't find index file
-  }
-  Serial.println("SUCCESS - Found index.htm file.");
-
   Ethernet.begin(mac, ip);  // initialize Ethernet device
   server.begin();           // start to listen for clients
 }

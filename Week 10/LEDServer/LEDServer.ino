@@ -8,7 +8,7 @@ byte mac[] = { 0xAE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(192, 168, 0, 20); // IP address, may need to change depending on network
 EthernetServer server(80);  // create a server at port 80
 
-String HTTP_req;          // stores the HTTP request
+String HTTP_request;          // stores the HTTP request
 boolean LED_status = 0;   // state of LED, off by default
 
 void setup()
@@ -30,7 +30,7 @@ void loop()
     while (client.connected()) {
       if (client.available()) {   // client data available to read
         char c = client.read(); // read 1 byte (character) from client
-        HTTP_req += c;  // save the HTTP request 1 char at a time
+        HTTP_request += c;  // save the HTTP request 1 char at a time
         // last line of client request is blank and ends with \n
         // respond to client only after last line received
         if (c == '\n' && currentLineIsBlank) {
@@ -53,8 +53,8 @@ void loop()
           client.println("</form>");
           client.println("</body>");
           client.println("</html>");
-          Serial.print(HTTP_req);
-          HTTP_req = "";    // finished with request, empty string
+          Serial.print(HTTP_request);
+          HTTP_request = "";    // finished with request, empty string
           break;
         }
         // every line of text received from the client ends with \r\n
@@ -77,7 +77,7 @@ void loop()
 // switch LED and send back HTML for LED checkbox
 void ProcessCheckbox(EthernetClient client)
 {
-  if (HTTP_req.indexOf("LED2=2") > -1) {  // see if checkbox was clicked
+  if (HTTP_request.indexOf("LED2=1") > -1) {  // see if checkbox was clicked
     // the checkbox was clicked, toggle the LED
     if (LED_status) {
       LED_status = 0;
@@ -90,13 +90,11 @@ void ProcessCheckbox(EthernetClient client)
   if (LED_status) {    // switch LED on
     digitalWrite(2, HIGH);
     // checkbox is checked
-    client.println("<input type=\"checkbox\" name=\"LED2\" value=\"2\" \
-        onclick=\"submit();\" checked>LED2");
+    client.println("<input type=\"checkbox\" name=\"LED2\" value=\"1\" \onclick=\"submit();\" checked>LED2");
   }
   else {              // switch LED off
     digitalWrite(2, LOW);
     // checkbox is unchecked
-    client.println("<input type=\"checkbox\" name=\"LED2\" value=\"2\" \
-        onclick=\"submit();\">LED2");
+    client.println("<input type=\"checkbox\" name=\"LED2\" value=\"1\" \onclick=\"submit();\">LED2");
   }
 }
