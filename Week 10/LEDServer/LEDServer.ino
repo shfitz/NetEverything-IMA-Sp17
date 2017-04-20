@@ -95,7 +95,6 @@ void ProcessCheckbox(EthernetClient client)
   else {              // switch LED off
     digitalWrite(2, LOW);
     // checkbox is unchecked
-    client.println("<input type=\"checkbox\" name=\"LED2\" value=\"1git
-    \" \onclick=\"submit();\">LED2");
+    client.println("<input type=\"checkbox\" name=\"LED2\" value=\"1\" \onclick=\"submit();\">LED2");
   }
 }
